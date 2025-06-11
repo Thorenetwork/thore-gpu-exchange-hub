@@ -1,4 +1,5 @@
 
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -23,6 +24,30 @@ import {
 import { Link } from "react-router-dom";
 
 const About = () => {
+  const [tradingVolume, setTradingVolume] = useState(10000);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTradingVolume(prev => {
+        // Random change between -5% and +5%
+        const changePercent = (Math.random() - 0.5) * 0.1; // 10% max change
+        const newVolume = prev * (1 + changePercent);
+        return Math.round(newVolume);
+      });
+    }, 60000); // Update every minute (60,000 milliseconds)
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatVolume = (volume: number) => {
+    if (volume >= 1000000) {
+      return `$${(volume / 1000000).toFixed(1)}M`;
+    } else if (volume >= 1000) {
+      return `$${(volume / 1000).toFixed(0)}K`;
+    }
+    return `$${volume}`;
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -275,7 +300,7 @@ const About = () => {
               <div className="text-lg opacity-90">Active Users</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold mb-2">$1.2M</div>
+              <div className="text-4xl font-bold mb-2">{formatVolume(tradingVolume)}</div>
               <div className="text-lg opacity-90">24h Trading Volume</div>
             </div>
           </div>
