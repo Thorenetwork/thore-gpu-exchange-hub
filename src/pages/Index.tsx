@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import GpuPriceTicker from "@/components/GpuPriceTicker";
 import { Link } from "react-router-dom";
 import { 
   Cpu, 
@@ -23,6 +24,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      
+      {/* GPU Price Ticker */}
+      <GpuPriceTicker />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden">

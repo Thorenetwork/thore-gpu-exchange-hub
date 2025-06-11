@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -10,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { 
   ShoppingCart, 
-  Sell, 
+  TrendingDown, 
   Calculator,
   Clock,
   Zap
@@ -198,7 +197,7 @@ const QuickTrade = () => {
               </div>
 
               <Button className="w-full">
-                <Sell className="h-4 w-4 mr-2" />
+                <TrendingDown className="h-4 w-4 mr-2" />
                 List for Sale
               </Button>
             </div>
