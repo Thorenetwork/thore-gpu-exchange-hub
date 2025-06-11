@@ -27,8 +27,8 @@ import {
 
 const Marketplace = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedRegion, setSelectedRegion] = useState("");
-  const [selectedGpuType, setSelectedGpuType] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("all");
+  const [selectedGpuType, setSelectedGpuType] = useState("all");
 
   const gpuListings = [
     {
@@ -114,8 +114,8 @@ const Marketplace = () => {
   const filteredListings = gpuListings.filter(listing => {
     const matchesSearch = listing.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          listing.provider.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesRegion = !selectedRegion || listing.location.includes(selectedRegion);
-    const matchesGpuType = !selectedGpuType || listing.title.includes(selectedGpuType);
+    const matchesRegion = selectedRegion === "all" || listing.location.includes(selectedRegion);
+    const matchesGpuType = selectedGpuType === "all" || listing.title.includes(selectedGpuType);
     
     return matchesSearch && matchesRegion && matchesGpuType;
   });
@@ -172,7 +172,7 @@ const Marketplace = () => {
                   <span className="text-2xl font-bold">892</span>
                 </div>
                 <p className="text-sm text-muted-foreground">Verified Providers</p>
-              </CardContent>
+              </Card>
             </Card>
           </div>
         </div>
@@ -218,7 +218,7 @@ const Marketplace = () => {
                       <SelectValue placeholder="Region" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All Regions</SelectItem>
+                      <SelectItem value="all">All Regions</SelectItem>
                       <SelectItem value="US">United States</SelectItem>
                       <SelectItem value="EU">Europe</SelectItem>
                       <SelectItem value="Asia">Asia Pacific</SelectItem>
@@ -230,7 +230,7 @@ const Marketplace = () => {
                       <SelectValue placeholder="GPU Type" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All GPUs</SelectItem>
+                      <SelectItem value="all">All GPUs</SelectItem>
                       <SelectItem value="A100">NVIDIA A100</SelectItem>
                       <SelectItem value="H100">NVIDIA H100</SelectItem>
                       <SelectItem value="V100">NVIDIA V100</SelectItem>
