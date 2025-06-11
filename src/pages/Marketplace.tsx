@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -172,7 +173,7 @@ const Marketplace = () => {
                   <span className="text-2xl font-bold">892</span>
                 </div>
                 <p className="text-sm text-muted-foreground">Verified Providers</p>
-              </Card>
+              </CardContent>
             </Card>
           </div>
         </div>
