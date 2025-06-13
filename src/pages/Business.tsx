@@ -16,7 +16,8 @@ import {
   Zap,
   Globe,
   Users,
-  CheckCircle
+  CheckCircle,
+  MapPin
 } from "lucide-react";
 import {
   ChartContainer,
@@ -54,6 +55,14 @@ const Business = () => {
     { year: "2027", market: 280, gpuDemand: 245 }
   ];
 
+  // India market data
+  const indiaMarketData = [
+    { year: "2024", market: 2.5, ai: 1.2 },
+    { year: "2025", market: 8.5, ai: 4.8 },
+    { year: "2026", market: 25.4, ai: 18.2 },
+    { year: "2027", market: 125.0, ai: 95.5 }
+  ];
+
   // ROI breakdown data
   const roiBreakdown = [
     { category: "AI Training", percentage: 45, value: 1350 },
@@ -78,6 +87,10 @@ const Business = () => {
     gpuDemand: {
       label: "GPU Demand ($B)",
       color: "hsl(142, 76%, 36%)",
+    },
+    ai: {
+      label: "AI Industry ($B)",
+      color: "hsl(287, 75%, 60%)",
     }
   };
 
@@ -90,16 +103,16 @@ const Business = () => {
         <div className="absolute inset-0 gradient-animate opacity-5"></div>
         <div className="container mx-auto px-4 relative">
           <div className="text-center max-w-4xl mx-auto mb-12">
-            <Badge className="mb-6 bg-green-100 text-green-700 border-green-300">
+            <Badge className="mb-6 bg-blue-100 text-blue-700 border-blue-300">
               <TrendingUp className="h-4 w-4 mr-2" />
               Investment Opportunity
             </Badge>
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-green-600 to-blue-600 bg-clip-text text-transparent">
-              Transform $100 into $3,000
+              GPU Credits Investment Analysis
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-              Invest in GPU Resources Credits today and capitalize on the explosive growth 
-              of AI and blockchain technology over the next 2 years.
+              Invest in GPU Resources Credits and participate in the growing 
+              AI and blockchain technology market over the next 2 years.
             </p>
           </div>
 
@@ -116,14 +129,14 @@ const Business = () => {
               <CardHeader className="pb-2">
                 <Target className="h-8 w-8 text-blue-500 mx-auto" />
                 <CardTitle className="text-2xl">$3,000</CardTitle>
-                <CardDescription>Target Value 2027</CardDescription>
+                <CardDescription>Projected Value 2027</CardDescription>
               </CardHeader>
             </Card>
             <Card className="text-center">
               <CardHeader className="pb-2">
                 <TrendingUp className="h-8 w-8 text-purple-500 mx-auto" />
-                <CardTitle className="text-2xl">2,900%</CardTitle>
-                <CardDescription>Total ROI</CardDescription>
+                <CardTitle className="text-2xl">30x</CardTitle>
+                <CardDescription>Potential Growth</CardDescription>
               </CardHeader>
             </Card>
             <Card className="text-center">
@@ -137,13 +150,104 @@ const Business = () => {
         </div>
       </section>
 
-      {/* Investment Growth Chart */}
+      {/* India Market Focus */}
       <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">India: The Next AI Powerhouse</h2>
+            <p className="text-xl text-muted-foreground">
+              India's AI industry is experiencing unprecedented growth, creating massive GPU demand
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <MapPin className="h-6 w-6 mr-2" />
+                  India AI Market Growth
+                </CardTitle>
+                <CardDescription>
+                  GPU resources demand expected to grow 500x in Indian AI industry
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer config={chartConfig} className="h-[300px]">
+                  <AreaChart data={indiaMarketData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="year" />
+                    <YAxis />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Area
+                      type="monotone"
+                      dataKey="market"
+                      stroke="var(--color-market)"
+                      fill="var(--color-market)"
+                      fillOpacity={0.3}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="ai"
+                      stroke="var(--color-ai)"
+                      fill="var(--color-ai)"
+                      fillOpacity={0.3}
+                    />
+                  </AreaChart>
+                </ChartContainer>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Why India is Key</CardTitle>
+                <CardDescription>
+                  Early investment opportunity in a rapidly growing market
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3"></div>
+                    <div>
+                      <h4 className="font-semibold mb-1">Government AI Initiative</h4>
+                      <p className="text-sm text-muted-foreground">₹10,000 crore budget allocation for AI development</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3"></div>
+                    <div>
+                      <h4 className="font-semibold mb-1">Tech Talent Pool</h4>
+                      <p className="text-sm text-muted-foreground">Largest pool of AI engineers and data scientists globally</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3"></div>
+                    <div>
+                      <h4 className="font-semibold mb-1">Early Stage Market</h4>
+                      <p className="text-sm text-muted-foreground">GPU infrastructure still developing, perfect entry point</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3"></div>
+                    <div>
+                      <h4 className="font-semibold mb-1">500x Growth Potential</h4>
+                      <p className="text-sm text-muted-foreground">GPU demand expected to multiply by 500x by 2027</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Investment Growth Chart */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Investment Growth Projection</h2>
             <p className="text-xl text-muted-foreground">
-              See how your $100 investment grows to $3,000 by 2027
+              Projected growth based on GPU market demand and Thore Network adoption
             </p>
           </div>
 
@@ -154,7 +258,7 @@ const Business = () => {
                 Investment Value Over Time
               </CardTitle>
               <CardDescription>
-                Projected growth based on GPU market demand and Thore Network adoption
+                Based on global GPU market trends and India's emerging AI sector
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -185,12 +289,12 @@ const Business = () => {
       </section>
 
       {/* Market Analysis */}
-      <section className="py-16">
+      <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Market Analysis</h2>
             <p className="text-xl text-muted-foreground">
-              The GPU market is experiencing unprecedented growth
+              The GPU market is experiencing significant growth worldwide
             </p>
           </div>
 
@@ -223,10 +327,10 @@ const Business = () => {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <PieChart className="h-6 w-6 mr-2" />
-                  ROI Distribution by Sector
+                  Revenue Distribution by Sector
                 </CardTitle>
                 <CardDescription>
-                  Where your $2,900 profit comes from by 2027
+                  Expected revenue sources by 2027
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -254,12 +358,12 @@ const Business = () => {
       </section>
 
       {/* Investment Drivers */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Why GPU Credits Will 30x</h2>
+            <h2 className="text-4xl font-bold mb-4">Key Growth Drivers</h2>
             <p className="text-xl text-muted-foreground">
-              Multiple factors driving exponential growth
+              Factors contributing to GPU credit value appreciation
             </p>
           </div>
 
@@ -269,8 +373,8 @@ const Business = () => {
                 <Zap className="h-10 w-10 text-yellow-500 mb-4" />
                 <CardTitle>AI Revolution</CardTitle>
                 <CardDescription>
-                  ChatGPT sparked an AI arms race. Every company needs GPU power for training 
-                  and inference, creating unprecedented demand.
+                  Growing demand for AI training and inference across industries, 
+                  creating sustained GPU resource requirements.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -282,30 +386,30 @@ const Business = () => {
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <Users className="h-10 w-10 text-blue-500 mb-4" />
-                <CardTitle>Supply Shortage</CardTitle>
+                <CardTitle>Supply Constraints</CardTitle>
                 <CardDescription>
-                  NVIDIA can't keep up with demand. Lead times for high-end GPUs are 
-                  6-12 months, creating a massive supply-demand imbalance.
+                  Limited GPU manufacturing capacity creating supply-demand imbalance, 
+                  particularly in emerging markets like India.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-red-600">-60% supply</div>
-                <div className="text-sm text-muted-foreground">Below demand</div>
+                <div className="text-2xl font-bold text-red-600">Limited supply</div>
+                <div className="text-sm text-muted-foreground">vs growing demand</div>
               </CardContent>
             </Card>
 
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <Globe className="h-10 w-10 text-green-500 mb-4" />
-                <CardTitle>Democratization</CardTitle>
+                <CardTitle>Market Democratization</CardTitle>
                 <CardDescription>
-                  Thore Network makes GPU resources accessible to everyone, creating 
-                  a liquid market for previously illiquid assets.
+                  Thore Network enables efficient GPU resource allocation, 
+                  creating new market opportunities in underserved regions.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-blue-600">10x efficiency</div>
-                <div className="text-sm text-muted-foreground">In resource allocation</div>
+                <div className="text-2xl font-bold text-blue-600">Early entry</div>
+                <div className="text-sm text-muted-foreground">Competitive advantage</div>
               </CardContent>
             </Card>
           </div>
@@ -313,12 +417,12 @@ const Business = () => {
       </section>
 
       {/* Investment Timeline */}
-      <section className="py-16">
+      <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Investment Timeline</h2>
             <p className="text-xl text-muted-foreground">
-              Your journey from $100 to $3,000
+              Your investment journey from $100 to projected $3,000
             </p>
           </div>
 
@@ -331,7 +435,7 @@ const Business = () => {
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold mb-2">January 2025 - Initial Investment</h3>
                   <p className="text-muted-foreground">
-                    Invest $100 in GPU Credits. Market is just beginning to recognize the value.
+                    Invest $100 in GPU Credits. Market begins recognizing value in emerging economies.
                   </p>
                   <div className="text-lg font-bold text-green-600 mt-2">Value: $100</div>
                 </div>
@@ -344,7 +448,7 @@ const Business = () => {
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold mb-2">Mid 2025 - Early Adoption</h3>
                   <p className="text-muted-foreground">
-                    Thore Network gains traction. First major enterprises start using the platform.
+                    Thore Network gains traction in India. Government AI initiatives drive demand.
                   </p>
                   <div className="text-lg font-bold text-green-600 mt-2">Value: $180 (+80%)</div>
                 </div>
@@ -355,9 +459,9 @@ const Business = () => {
                   3
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-2">2026 - Mass Adoption</h3>
+                  <h3 className="text-xl font-semibold mb-2">2026 - Market Expansion</h3>
                   <p className="text-muted-foreground">
-                    AI becomes mainstream. GPU shortage intensifies. Thore Network is the go-to solution.
+                    AI adoption accelerates. GPU scarcity intensifies across Asian markets.
                   </p>
                   <div className="text-lg font-bold text-green-600 mt-2">Value: $450 (+350%)</div>
                 </div>
@@ -368,9 +472,9 @@ const Business = () => {
                   4
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-2">Late 2026 - Market Leadership</h3>
+                  <h3 className="text-xl font-semibold mb-2">Late 2026 - Market Maturation</h3>
                   <p className="text-muted-foreground">
-                    Thore Network dominates GPU credit trading. Institutional investors enter.
+                    Thore Network becomes established platform. Institutional adoption begins.
                   </p>
                   <div className="text-lg font-bold text-green-600 mt-2">Value: $850 (+750%)</div>
                 </div>
@@ -383,9 +487,9 @@ const Business = () => {
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold mb-2">2027 - Target Achievement</h3>
                   <p className="text-muted-foreground">
-                    Full market maturity. GPU Credits are a recognized asset class.
+                    Full market maturity. GPU Credits established as tradeable digital asset.
                   </p>
-                  <div className="text-lg font-bold text-green-600 mt-2">Value: $3,000 (+2,900%)</div>
+                  <div className="text-lg font-bold text-green-600 mt-2">Value: $3,000 (30x growth)</div>
                 </div>
               </div>
             </div>
@@ -394,7 +498,7 @@ const Business = () => {
       </section>
 
       {/* Risk Disclosure */}
-      <section className="py-16 bg-muted/30">
+      <section className="py-16">
         <div className="container mx-auto px-4">
           <Card className="max-w-4xl mx-auto border-yellow-200 bg-yellow-50">
             <CardHeader>
@@ -404,11 +508,11 @@ const Business = () => {
               <ul className="space-y-2">
                 <li className="flex items-start">
                   <CheckCircle className="h-5 w-5 mr-2 mt-0.5 text-yellow-600" />
-                  Past performance does not guarantee future results
+                  Investment values are projections based on market analysis
                 </li>
                 <li className="flex items-start">
                   <CheckCircle className="h-5 w-5 mr-2 mt-0.5 text-yellow-600" />
-                  GPU credit values can fluctuate based on market conditions
+                  GPU credit values may fluctuate based on market conditions
                 </li>
                 <li className="flex items-start">
                   <CheckCircle className="h-5 w-5 mr-2 mt-0.5 text-yellow-600" />
@@ -428,16 +532,16 @@ const Business = () => {
       <section className="py-20 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Start Your $100 to $3,000 Journey
+            Start Your GPU Credits Investment
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-            Don't miss this opportunity to be part of the GPU revolution. 
-            The earlier you invest, the greater your potential returns.
+            Join the growing GPU economy and participate in India's AI revolution. 
+            Early investment positions offer the greatest potential returns.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/marketplace">
               <Button size="lg" variant="secondary" className="text-lg px-8 py-3">
-                Invest Now
+                Explore Investment Options
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
