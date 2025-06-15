@@ -16,7 +16,7 @@ const Navbar = () => {
             <img 
               src="/lovable-uploads/1371ab81-1d62-46d1-ad31-cbcbc7a43f3d.png" 
               alt="Thore Network" 
-              className="h-12 w-auto"
+              className="h-16 w-auto"
             />
           </Link>
 
