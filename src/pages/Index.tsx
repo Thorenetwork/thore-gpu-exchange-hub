@@ -34,14 +34,14 @@ const Index = () => {
         <div className="container mx-auto px-4 py-20 relative">
           <div className="text-center max-w-4xl mx-auto">
             <Badge className="mb-6 bg-primary/10 text-primary border-primary/20">
-              🚀 Revolutionizing GPU Resource Sharing
+              🚀 Revolutionizing AI Resource Sharing
             </Badge>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent animate-fade-in">
-              GPU Credit Marketplace
+              AI Credit Marketplace
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed animate-fade-in">
-              Democratize AI and blockchain development with secure, transparent GPU credit trading. 
-              Connect providers and innovators in the world's first dedicated GPU resource marketplace.
+              Democratize AI and blockchain development with secure, transparent AI credit trading. 
+              Connect providers and innovators in the world's first dedicated AI resource marketplace.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
               <Link to="/marketplace">
@@ -66,7 +66,7 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl md:text-4xl font-bold text-primary mb-2">10K+</div>
-              <div className="text-muted-foreground">GPU Hours Traded</div>
+              <div className="text-muted-foreground">AI Hours Traded</div>
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-bold text-primary mb-2">500+</div>
@@ -89,10 +89,10 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Powerful Features for Modern GPU Trading
+              Powerful Features for Modern AI Trading
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Built for developers, researchers, and enterprises who need reliable, scalable GPU resources
+              Built for developers, researchers, and enterprises who need reliable, scalable AI resources
             </p>
           </div>
 
@@ -142,7 +142,7 @@ const Index = () => {
                 <Zap className="h-10 w-10 text-primary mb-4" />
                 <CardTitle>Instant Deployment</CardTitle>
                 <CardDescription>
-                  Deploy GPU resources in seconds with automated provisioning and configuration
+                  Deploy AI resources in seconds with automated provisioning and configuration
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -152,7 +152,7 @@ const Index = () => {
                 <Globe className="h-10 w-10 text-primary mb-4" />
                 <CardTitle>Global Network</CardTitle>
                 <CardDescription>
-                  Access GPU resources worldwide with region-specific compliance and data regulations
+                  Access AI resources worldwide with region-specific compliance and data regulations
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -179,7 +179,7 @@ const Index = () => {
               </div>
               <h3 className="text-2xl font-semibold mb-4">Browse & Compare</h3>
               <p className="text-muted-foreground">
-                Explore available GPU credits from verified providers. Filter by type, region, pricing, and availability.
+                Explore available AI credits from verified providers. Filter by type, region, pricing, and availability.
               </p>
             </div>
 
@@ -199,7 +199,7 @@ const Index = () => {
               </div>
               <h3 className="text-2xl font-semibold mb-4">Deploy & Scale</h3>
               <p className="text-muted-foreground">
-                Instantly access your GPU resources and scale your AI or blockchain projects with enterprise-grade performance.
+                Instantly access your AI resources and scale your AI or blockchain projects with enterprise-grade performance.
               </p>
             </div>
           </div>
@@ -219,7 +219,7 @@ const Index = () => {
                 Responsible AI Development
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
-                We're committed to promoting sustainable GPU usage and reducing the carbon footprint 
+                We're committed to promoting sustainable AI usage and reducing the carbon footprint 
                 of AI and blockchain development through efficient resource sharing.
               </p>
               <ul className="space-y-4">
@@ -254,7 +254,7 @@ const Index = () => {
           </h2>
           <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
             Join thousands of developers, researchers, and enterprises who trust Thore Network 
-            for their GPU resource needs.
+            for their AI resource needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/marketplace">
