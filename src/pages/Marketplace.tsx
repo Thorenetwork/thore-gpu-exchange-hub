@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/Navbar";
@@ -91,6 +90,84 @@ const Marketplace = () => {
       price: 1.65,
       availability: "30 minutes",
       specs: "48GB GDDR6, 696 GB/s",
+      verified: true,
+      sustainable: true
+    },
+    {
+      id: 7,
+      title: "Thor T78 Next-Gen",
+      provider: "Quantum Computing Labs",
+      rating: 5.0,
+      reviews: 23,
+      location: "US East",
+      price: 4.25,
+      availability: "1 hour",
+      specs: "96GB HBM4, 4,200 GB/s",
+      verified: true,
+      sustainable: true
+    },
+    {
+      id: 8,
+      title: "NVIDIA H200",
+      provider: "Apex AI Solutions",
+      rating: 4.9,
+      reviews: 67,
+      location: "EU North",
+      price: 4.50,
+      availability: "2 hours",
+      specs: "141GB HBM3e, 4,800 GB/s",
+      verified: true,
+      sustainable: true
+    },
+    {
+      id: 9,
+      title: "Intel Ponte Vecchio",
+      provider: "Intel Edge Computing",
+      rating: 4.4,
+      reviews: 34,
+      location: "Asia Pacific",
+      price: 2.85,
+      availability: "3 hours",
+      specs: "128GB HBM2e, 2,048 GB/s",
+      verified: true,
+      sustainable: true
+    },
+    {
+      id: 10,
+      title: "AMD MI300X",
+      provider: "RedTech Solutions",
+      rating: 4.7,
+      reviews: 91,
+      location: "US West",
+      price: 3.20,
+      availability: "1 hour",
+      specs: "192GB HBM3, 5,300 GB/s",
+      verified: true,
+      sustainable: true
+    },
+    {
+      id: 11,
+      title: "NVIDIA L40S",
+      provider: "Professional GPU Cloud",
+      rating: 4.6,
+      reviews: 112,
+      location: "EU West",
+      price: 2.30,
+      availability: "Immediate",
+      specs: "48GB GDDR6, 864 GB/s",
+      verified: true,
+      sustainable: false
+    },
+    {
+      id: 12,
+      title: "Google TPU v5",
+      provider: "Cloud TPU Networks",
+      rating: 4.8,
+      reviews: 45,
+      location: "US Central",
+      price: 3.90,
+      availability: "4 hours",
+      specs: "Custom AI Accelerator, 8,960 GB/s",
       verified: true,
       sustainable: true
     }

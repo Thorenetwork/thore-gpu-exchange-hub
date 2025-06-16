@@ -54,9 +54,13 @@ const SearchFilters = ({
             <SelectItem value="all">All GPUs</SelectItem>
             <SelectItem value="A100">NVIDIA A100</SelectItem>
             <SelectItem value="H100">NVIDIA H100</SelectItem>
+            <SelectItem value="H200">NVIDIA H200</SelectItem>
             <SelectItem value="V100">NVIDIA V100</SelectItem>
             <SelectItem value="RTX">NVIDIA RTX</SelectItem>
+            <SelectItem value="Thor">Thor T78</SelectItem>
             <SelectItem value="AMD">AMD</SelectItem>
+            <SelectItem value="Intel">Intel</SelectItem>
+            <SelectItem value="TPU">Google TPU</SelectItem>
           </SelectContent>
         </Select>
 
