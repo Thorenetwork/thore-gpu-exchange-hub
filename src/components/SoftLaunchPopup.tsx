@@ -55,7 +55,7 @@ const SoftLaunchPopup = () => {
             </h3>
             
             <p className="text-lg opacity-90">
-              Venture Soft Launch
+              AI Credit MarketPlace Soft Launch
             </p>
             
             <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
