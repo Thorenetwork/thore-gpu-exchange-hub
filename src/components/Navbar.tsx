@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { User, ShoppingCart, Menu, Mail } from "lucide-react";
+import { User, ShoppingCart, Menu } from "lucide-react";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -42,9 +41,8 @@ const Navbar = () => {
             </Link>
             <a 
               href="mailto:info@thorenetwork.com" 
-              className="text-foreground hover:text-primary transition-colors font-medium flex items-center"
+              className="text-foreground hover:text-primary transition-colors font-medium"
             >
-              <Mail className="h-4 w-4 mr-1" />
               Contact Us
             </a>
           </div>
@@ -101,9 +99,8 @@ const Navbar = () => {
               </Link>
               <a 
                 href="mailto:info@thorenetwork.com" 
-                className="text-foreground hover:text-primary transition-colors font-medium flex items-center"
+                className="text-foreground hover:text-primary transition-colors font-medium"
               >
-                <Mail className="h-4 w-4 mr-1" />
                 Contact Us
               </a>
               <div className="flex flex-col space-y-2 pt-4 border-t border-border">
