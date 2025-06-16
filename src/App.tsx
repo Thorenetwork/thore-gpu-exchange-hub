@@ -17,6 +17,7 @@ import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import Community from "./pages/Community";
 import Credits from "./pages/Credits";
+import ApiReference from "./pages/ApiReference";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/community" element={<Community />} />
           <Route path="/credits" element={<Credits />} />
+          <Route path="/api" element={<ApiReference />} />
           <Route path="/thorecoin-transactions" element={<ThorecoinTransactions />} />
           {navItems.map(({ to, page }) => (
             <Route key={to} path={to} element={page} />
