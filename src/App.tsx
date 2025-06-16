@@ -13,6 +13,10 @@ import Business from "./pages/Business";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Pricing from "./pages/Pricing";
+import Contact from "./pages/Contact";
+import Community from "./pages/Community";
+import Credits from "./pages/Credits";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +34,10 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/credits" element={<Credits />} />
           <Route path="/thorecoin-transactions" element={<ThorecoinTransactions />} />
           {navItems.map(({ to, page }) => (
             <Route key={to} path={to} element={page} />
