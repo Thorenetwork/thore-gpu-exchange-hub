@@ -50,12 +50,20 @@ const SoftLaunchPopup = () => {
           </DialogHeader>
 
           <div className="mt-6 text-center space-y-4">
+            <div className="flex justify-center mb-4">
+              <img 
+                src="/lovable-uploads/0b40157c-42d8-490a-8a62-fe6dfb169fde.png" 
+                alt="ThoreCoin Logo" 
+                className="h-16 w-auto"
+              />
+            </div>
+            
             <h3 className="text-xl font-semibold">
               Thore Network PVT LTD
             </h3>
             
             <p className="text-lg opacity-90">
-              AI Credit MarketPlace Soft Launch
+              AI Credit Marketplace
             </p>
             
             <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
