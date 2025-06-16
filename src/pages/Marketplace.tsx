@@ -1,30 +1,14 @@
+
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TradingDemo from "@/components/TradingDemo";
 import OrderBook from "@/components/OrderBook";
 import QuickTrade from "@/components/QuickTrade";
-import CreateVolumeDialog from "@/components/CreateVolumeDialog";
-import { 
-  Search, 
-  Filter,
-  MapPin,
-  Cpu,
-  Zap,
-  Shield,
-  Star,
-  Clock,
-  DollarSign,
-  TrendingUp,
-  Activity,
-  Users
-} from "lucide-react";
+import MarketStats from "@/components/MarketStats";
+import SearchFilters from "@/components/SearchFilters";
+import GPUListings from "@/components/GPUListings";
 
 const Marketplace = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -137,45 +121,7 @@ const Marketplace = () => {
             </p>
           </div>
 
-          {/* Market Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8">
-            <Card>
-              <CardContent className="p-4 text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Activity className="h-5 w-5 text-primary" />
-                  <span className="text-2xl font-bold">2,847</span>
-                </div>
-                <p className="text-sm text-muted-foreground">Active Traders</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4 text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <TrendingUp className="h-5 w-5 text-green-500" />
-                  <span className="text-2xl font-bold">$1.2M</span>
-                </div>
-                <p className="text-sm text-muted-foreground">24h Volume</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4 text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Zap className="h-5 w-5 text-primary" />
-                  <span className="text-2xl font-bold">15,439</span>
-                </div>
-                <p className="text-sm text-muted-foreground">GPU Hours Available</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-4 text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <Users className="h-5 w-5 text-blue-500" />
-                  <span className="text-2xl font-bold">892</span>
-                </div>
-                <p className="text-sm text-muted-foreground">Verified Providers</p>
-              </CardContent>
-            </Card>
-          </div>
+          <MarketStats />
         </div>
       </section>
 
@@ -201,155 +147,16 @@ const Marketplace = () => {
             </TabsContent>
 
             <TabsContent value="marketplace" className="space-y-6">
-              {/* Search and Filters */}
-              <div className="max-w-4xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-background p-6 rounded-lg shadow-sm border">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      placeholder="Search GPUs or providers..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
-                  
-                  <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Region" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Regions</SelectItem>
-                      <SelectItem value="US">United States</SelectItem>
-                      <SelectItem value="EU">Europe</SelectItem>
-                      <SelectItem value="Asia">Asia Pacific</SelectItem>
-                    </SelectContent>
-                  </Select>
+              <SearchFilters
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                selectedRegion={selectedRegion}
+                setSelectedRegion={setSelectedRegion}
+                selectedGpuType={selectedGpuType}
+                setSelectedGpuType={setSelectedGpuType}
+              />
 
-                  <Select value={selectedGpuType} onValueChange={setSelectedGpuType}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="GPU Type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All GPUs</SelectItem>
-                      <SelectItem value="A100">NVIDIA A100</SelectItem>
-                      <SelectItem value="H100">NVIDIA H100</SelectItem>
-                      <SelectItem value="V100">NVIDIA V100</SelectItem>
-                      <SelectItem value="RTX">NVIDIA RTX</SelectItem>
-                      <SelectItem value="AMD">AMD</SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  <Button className="w-full">
-                    <Filter className="h-4 w-4 mr-2" />
-                    More Filters
-                  </Button>
-                </div>
-              </div>
-
-              {/* Results */}
-              <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-semibold">
-                  {filteredListings.length} Available GPU Credits
-                </h2>
-                <Select defaultValue="price">
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="Sort by" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="price">Price: Low to High</SelectItem>
-                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                    <SelectItem value="rating">Highest Rated</SelectItem>
-                    <SelectItem value="availability">Availability</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredListings.map((listing) => (
-                  <Card key={listing.id} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <CardHeader>
-                      <div className="flex justify-between items-start mb-2">
-                        <div>
-                          <CardTitle className="text-xl">{listing.title}</CardTitle>
-                          <CardDescription className="text-primary font-medium">
-                            {listing.provider}
-                          </CardDescription>
-                        </div>
-                        <div className="flex flex-col gap-1">
-                          {listing.verified && (
-                            <Badge variant="secondary" className="text-xs">
-                              <Shield className="h-3 w-3 mr-1" />
-                              Verified
-                            </Badge>
-                          )}
-                          {listing.sustainable && (
-                            <Badge variant="outline" className="text-xs text-green-600 border-green-300">
-                              🌱 Eco
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                        <div className="flex items-center">
-                          <Star className="h-4 w-4 text-yellow-400 mr-1" />
-                          <span>{listing.rating}</span>
-                        </div>
-                        <span>•</span>
-                        <span>{listing.reviews} reviews</span>
-                        <span>•</span>
-                        <div className="flex items-center">
-                          <MapPin className="h-4 w-4 mr-1" />
-                          <span>{listing.location}</span>
-                        </div>
-                      </div>
-                    </CardHeader>
-
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="flex items-center text-sm text-muted-foreground">
-                          <Cpu className="h-4 w-4 mr-2" />
-                          <span>{listing.specs}</span>
-                        </div>
-
-                        <div className="flex items-center text-sm text-muted-foreground">
-                          <Clock className="h-4 w-4 mr-2" />
-                          <span>Available in {listing.availability}</span>
-                        </div>
-
-                        <div className="flex justify-between items-center pt-4 border-t">
-                          <div className="flex items-center">
-                            <DollarSign className="h-5 w-5 text-primary mr-1" />
-                            <span className="text-2xl font-bold text-primary">
-                              ${listing.price}
-                            </span>
-                            <span className="text-muted-foreground ml-1">/hour</span>
-                          </div>
-                          <CreateVolumeDialog 
-                            gpuTitle={listing.title} 
-                            price={listing.price}
-                          >
-                            <Button>
-                              Create Volume
-                            </Button>
-                          </CreateVolumeDialog>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-              {filteredListings.length === 0 && (
-                <div className="text-center py-12">
-                  <Cpu className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">No GPUs Found</h3>
-                  <p className="text-muted-foreground">
-                    Try adjusting your search criteria or filters
-                  </p>
-                </div>
-              )}
+              <GPUListings filteredListings={filteredListings} />
             </TabsContent>
 
             <TabsContent value="orders" className="space-y-6">
