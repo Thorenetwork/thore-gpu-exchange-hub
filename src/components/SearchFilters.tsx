@@ -1,26 +1,15 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, Filter } from "lucide-react";
 
-interface SearchFiltersProps {
-  searchTerm: string;
-  setSearchTerm: (value: string) => void;
-  selectedRegion: string;
-  setSelectedRegion: (value: string) => void;
-  selectedGpuType: string;
-  setSelectedGpuType: (value: string) => void;
-}
+const SearchFilters = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("all");
+  const [selectedGpuType, setSelectedGpuType] = useState("all");
 
-const SearchFilters = ({
-  searchTerm,
-  setSearchTerm,
-  selectedRegion,
-  setSelectedRegion,
-  selectedGpuType,
-  setSelectedGpuType
-}: SearchFiltersProps) => {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-background p-6 rounded-lg shadow-sm border">

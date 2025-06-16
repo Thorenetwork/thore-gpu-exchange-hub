@@ -1,4 +1,5 @@
 
+import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import GPUCard from "@/components/GPUCard";
 import { Cpu } from "lucide-react";
@@ -17,11 +18,90 @@ interface GPUListing {
   sustainable: boolean;
 }
 
-interface GPUListingsProps {
-  filteredListings: GPUListing[];
-}
+const mockListings: GPUListing[] = [
+  {
+    id: 1,
+    title: "NVIDIA A100 80GB",
+    provider: "CloudGPU Pro",
+    rating: 4.8,
+    reviews: 124,
+    location: "US East",
+    price: 2.50,
+    availability: "2 minutes",
+    specs: "80GB HBM2e, 6912 CUDA Cores",
+    verified: true,
+    sustainable: true
+  },
+  {
+    id: 2,
+    title: "NVIDIA H100 80GB",
+    provider: "AI Compute Hub",
+    rating: 4.9,
+    reviews: 89,
+    location: "EU West",
+    price: 3.75,
+    availability: "5 minutes",
+    specs: "80GB HBM3, 16896 CUDA Cores",
+    verified: true,
+    sustainable: false
+  },
+  {
+    id: 3,
+    title: "Thor T78 GPU",
+    provider: "Thor Networks",
+    rating: 4.7,
+    reviews: 67,
+    location: "Asia Pacific",
+    price: 4.25,
+    availability: "1 minute",
+    specs: "128GB Memory, Custom Architecture",
+    verified: true,
+    sustainable: true
+  },
+  {
+    id: 4,
+    title: "NVIDIA V100 32GB",
+    provider: "Budget GPU",
+    rating: 4.5,
+    reviews: 156,
+    location: "US West",
+    price: 1.85,
+    availability: "10 minutes",
+    specs: "32GB HBM2, 5120 CUDA Cores",
+    verified: false,
+    sustainable: false
+  },
+  {
+    id: 5,
+    title: "AMD MI250X",
+    provider: "OpenCompute",
+    rating: 4.6,
+    reviews: 43,
+    location: "EU Central",
+    price: 2.10,
+    availability: "3 minutes",
+    specs: "128GB HBM2e, 14080 Stream Processors",
+    verified: true,
+    sustainable: true
+  },
+  {
+    id: 6,
+    title: "NVIDIA H200 141GB",
+    provider: "Elite GPU",
+    rating: 4.9,
+    reviews: 28,
+    location: "US East",
+    price: 4.50,
+    availability: "8 minutes",
+    specs: "141GB HBM3e, 16896 CUDA Cores",
+    verified: true,
+    sustainable: false
+  }
+];
 
-const GPUListings = ({ filteredListings }: GPUListingsProps) => {
+const GPUListings = () => {
+  const [filteredListings] = useState<GPUListing[]>(mockListings);
+
   return (
     <>
       <div className="flex justify-between items-center">
