@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GpuPriceTicker from "@/components/GpuPriceTicker";
+import SoftLaunchPopup from "@/components/SoftLaunchPopup";
 import { Link } from "react-router-dom";
 import { 
   Cpu, 
@@ -24,6 +25,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      
+      {/* Soft Launch Popup */}
+      <SoftLaunchPopup />
       
       {/* GPU Price Ticker */}
       <GpuPriceTicker />
