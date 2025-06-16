@@ -25,6 +25,9 @@ const Navbar = () => {
             <Link to="/marketplace" className="text-foreground hover:text-primary transition-colors font-medium">
               Marketplace
             </Link>
+            <Link to="/trading" className="text-foreground hover:text-primary transition-colors font-medium">
+              Trading
+            </Link>
             <Link to="/business" className="text-foreground hover:text-primary transition-colors font-medium">
               Business
             </Link>
@@ -80,6 +83,9 @@ const Navbar = () => {
             <div className="flex flex-col space-y-4">
               <Link to="/marketplace" className="text-foreground hover:text-primary transition-colors font-medium">
                 Marketplace
+              </Link>
+              <Link to="/trading" className="text-foreground hover:text-primary transition-colors font-medium">
+                Trading
               </Link>
               <Link to="/business" className="text-foreground hover:text-primary transition-colors font-medium">
                 Business
