@@ -37,12 +37,6 @@ const Navbar = () => {
             <Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium">
               About
             </Link>
-            <Link to="/docs" className="text-foreground hover:text-primary transition-colors font-medium">
-              Documentation
-            </Link>
-            <Link to="/support" className="text-foreground hover:text-primary transition-colors font-medium">
-              Support
-            </Link>
             <a 
               href="mailto:info@thorenetwork.com" 
               className="text-foreground hover:text-primary transition-colors font-medium"
@@ -97,12 +91,6 @@ const Navbar = () => {
               </Link>
               <Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium">
                 About
-              </Link>
-              <Link to="/docs" className="text-foreground hover:text-primary transition-colors font-medium">
-                Documentation
-              </Link>
-              <Link to="/support" className="text-foreground hover:text-primary transition-colors font-medium">
-                Support
               </Link>
               <a 
                 href="mailto:info@thorenetwork.com" 
