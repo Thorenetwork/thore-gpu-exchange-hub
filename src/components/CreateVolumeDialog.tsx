@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { CreditCard, Building2, Bitcoin, ShoppingCart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface CreateVolumeDialogProps {
   gpuTitle: string;
@@ -19,6 +19,7 @@ const CreateVolumeDialog = ({ gpuTitle, price, children }: CreateVolumeDialogPro
   const [isOpen, setIsOpen] = useState(false);
   const [hours, setHours] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("");
+  const navigate = useNavigate();
 
   const calculateTotal = () => {
     if (!hours) return 0;
@@ -33,13 +34,18 @@ const CreateVolumeDialog = ({ gpuTitle, price, children }: CreateVolumeDialogPro
 
     const total = calculateTotal();
     toast.success(`Volume created! ${hours} hours of ${gpuTitle} for $${total}`, {
-      description: `Payment method: ${paymentMethod}`
+      description: `Payment method: ${paymentMethod}. Redirecting to your credits...`
     });
     
     // Reset form and close dialog
     setHours("");
     setPaymentMethod("");
     setIsOpen(false);
+    
+    // Redirect to credits page after a short delay
+    setTimeout(() => {
+      navigate('/credits');
+    }, 1500);
   };
 
   const paymentMethods = [
