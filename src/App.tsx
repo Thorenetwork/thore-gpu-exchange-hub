@@ -14,6 +14,13 @@ import Support from "./pages/Support";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
+import Sellers from "./pages/Sellers";
+import Buyers from "./pages/Buyers";
+import Pricing from "./pages/Pricing";
+import ApiReference from "./pages/ApiReference";
+import Guides from "./pages/Guides";
+import Community from "./pages/Community";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +39,13 @@ const App = () => (
           <Route path="/docs" element={<Documentation />} />
           <Route path="/documentation" element={<Documentation />} />
           <Route path="/support" element={<Support />} />
+          <Route path="/sellers" element={<Sellers />} />
+          <Route path="/buyers" element={<Buyers />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/api" element={<ApiReference />} />
+          <Route path="/guides" element={<Guides />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
