@@ -21,6 +21,8 @@ import ApiReference from "./pages/ApiReference";
 import Documentation from "./pages/Documentation";
 import Guides from "./pages/Guides";
 import Status from "./pages/Status";
+import Buyers from "./pages/Buyers";
+import Sellers from "./pages/Sellers";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +48,8 @@ const App = () => (
           <Route path="/docs" element={<Documentation />} />
           <Route path="/guides" element={<Guides />} />
           <Route path="/status" element={<Status />} />
+          <Route path="/buyers" element={<Buyers />} />
+          <Route path="/sellers" element={<Sellers />} />
           <Route path="/thorecoin-transactions" element={<ThorecoinTransactions />} />
           {navItems.map(({ to, page }) => (
             <Route key={to} path={to} element={page} />
