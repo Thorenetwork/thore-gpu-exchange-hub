@@ -21,6 +21,8 @@ import ApiReference from "./pages/ApiReference";
 import Guides from "./pages/Guides";
 import Community from "./pages/Community";
 import Contact from "./pages/Contact";
+import Status from "./pages/Status";
+import Security from "./pages/Security";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +48,8 @@ const App = () => (
           <Route path="/guides" element={<Guides />} />
           <Route path="/community" element={<Community />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/status" element={<Status />} />
+          <Route path="/security" element={<Security />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
