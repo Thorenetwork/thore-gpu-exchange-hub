@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import ThorecoinTransactions from "./pages/ThorecoinTransactions";
 import Marketplace from "./pages/Marketplace";
 import Trading from "./pages/Trading";
+import Thorecoin from "./pages/Thorecoin";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/trading" element={<Trading />} />
+          <Route path="/thorecoin" element={<Thorecoin />} />
           <Route path="/thorecoin-transactions" element={<ThorecoinTransactions />} />
           {navItems.map(({ to, page }) => (
             <Route key={to} path={to} element={page} />
