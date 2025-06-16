@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -32,6 +33,19 @@ const CreateVolumeDialog = ({ gpuTitle, price, children }: CreateVolumeDialogPro
       return;
     }
 
+    if (paymentMethod === "thorecoin") {
+      // Navigate to Thorecoin transactions page
+      navigate('/thorecoin-transactions', { 
+        state: { 
+          gpuTitle, 
+          hours, 
+          total: calculateTotal() 
+        } 
+      });
+      setIsOpen(false);
+      return;
+    }
+
     const total = calculateTotal();
     toast.success(`Volume created! ${hours} hours of ${gpuTitle} for $${total}`, {
       description: `Payment method: ${paymentMethod}. Redirecting to your credits...`
@@ -51,7 +65,18 @@ const CreateVolumeDialog = ({ gpuTitle, price, children }: CreateVolumeDialogPro
   const paymentMethods = [
     { value: "credit-card", label: "Credit Card", icon: CreditCard },
     { value: "bank-transfer", label: "Bank Transfer", icon: Building2 },
-    { value: "crypto", label: "Cryptocurrency", icon: Bitcoin }
+    { value: "crypto", label: "Cryptocurrency", icon: Bitcoin },
+    { 
+      value: "thorecoin", 
+      label: "Thorecoin (THR)", 
+      icon: () => (
+        <img 
+          src="/lovable-uploads/d0c3ad96-4098-4d11-88c1-f99faed47acc.png" 
+          alt="ThoreCoin" 
+          className="h-4 w-4"
+        />
+      )
+    }
   ];
 
   return (
@@ -129,7 +154,7 @@ const CreateVolumeDialog = ({ gpuTitle, price, children }: CreateVolumeDialogPro
               Cancel
             </Button>
             <Button onClick={handleCreateVolume} className="flex-1" disabled={!hours || !paymentMethod}>
-              Create Volume
+              {paymentMethod === "thorecoin" ? "Pay with THR" : "Create Volume"}
             </Button>
           </div>
         </div>
