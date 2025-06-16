@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, TrendingDown, Coins } from "lucide-react";
+import { TrendingUp, TrendingDown } from "lucide-react";
 
 const ThorecoinPriceTicker = () => {
   const [price, setPrice] = useState(122);
@@ -37,7 +37,11 @@ const ThorecoinPriceTicker = () => {
           {/* Main Price Display */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <Coins className="h-8 w-8 text-primary" />
+              <img 
+                src="/lovable-uploads/d0c3ad96-4098-4d11-88c1-f99faed47acc.png" 
+                alt="ThoreCoin" 
+                className="h-8 w-8"
+              />
               <span className="text-2xl font-bold">THR</span>
             </div>
             <div className="text-right">
