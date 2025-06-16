@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +10,7 @@ import Footer from "@/components/Footer";
 import TradingDemo from "@/components/TradingDemo";
 import OrderBook from "@/components/OrderBook";
 import QuickTrade from "@/components/QuickTrade";
+import CreateVolumeDialog from "@/components/CreateVolumeDialog";
 import { 
   Search, 
   Filter,
@@ -326,9 +326,14 @@ const Marketplace = () => {
                             </span>
                             <span className="text-muted-foreground ml-1">/hour</span>
                           </div>
-                          <Button>
-                            Add to Cart
-                          </Button>
+                          <CreateVolumeDialog 
+                            gpuTitle={listing.title} 
+                            price={listing.price}
+                          >
+                            <Button>
+                              Create Volume
+                            </Button>
+                          </CreateVolumeDialog>
                         </div>
                       </div>
                     </CardContent>
