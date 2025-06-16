@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -23,6 +24,7 @@ import Community from "./pages/Community";
 import Contact from "./pages/Contact";
 import Status from "./pages/Status";
 import Security from "./pages/Security";
+import Thorecoin from "./pages/Thorecoin";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +38,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/trading" element={<Trading />} />
+          <Route path="/thorecoin" element={<Thorecoin />} />
           <Route path="/credits" element={<Credits />} />
           <Route path="/about" element={<About />} />
           <Route path="/business" element={<Business />} />

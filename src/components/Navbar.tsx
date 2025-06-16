@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { User, ShoppingCart, Menu } from "lucide-react";
@@ -26,6 +27,9 @@ const Navbar = () => {
             </Link>
             <Link to="/trading" className="text-foreground hover:text-primary transition-colors font-medium">
               Trading
+            </Link>
+            <Link to="/thorecoin" className="text-foreground hover:text-primary transition-colors font-medium">
+              Thorecoin
             </Link>
             <Link to="/business" className="text-foreground hover:text-primary transition-colors font-medium">
               Business
@@ -84,6 +88,9 @@ const Navbar = () => {
               </Link>
               <Link to="/trading" className="text-foreground hover:text-primary transition-colors font-medium">
                 Trading
+              </Link>
+              <Link to="/thorecoin" className="text-foreground hover:text-primary transition-colors font-medium">
+                Thorecoin
               </Link>
               <Link to="/business" className="text-foreground hover:text-primary transition-colors font-medium">
                 Business
