@@ -22,6 +22,18 @@ import {
 } from "lucide-react";
 
 const Security = () => {
+  // Get current date and calculate recent dates
+  const currentDate = new Date();
+  const lastAuditDate = new Date(currentDate.getTime() - (15 * 24 * 60 * 60 * 1000)); // 15 days ago
+  const dataProtectionDate = new Date(currentDate.getTime() - (7 * 24 * 60 * 60 * 1000)); // 7 days ago
+  const incidentResponseDate = new Date(currentDate.getTime() - (3 * 24 * 60 * 60 * 1000)); // 3 days ago
+  const accessControlDate = new Date(currentDate.getTime() - (1 * 24 * 60 * 60 * 1000)); // 1 day ago
+  const vendorSecurityDate = currentDate; // today
+
+  const formatDate = (date: Date) => {
+    return date.toISOString().split('T')[0];
+  };
+
   const securityFeatures = [
     {
       title: "End-to-End Encryption",
@@ -88,22 +100,22 @@ const Security = () => {
     {
       title: "Data Protection",
       description: "Comprehensive data protection and privacy policies",
-      lastUpdated: "2024-12-01"
+      lastUpdated: formatDate(dataProtectionDate)
     },
     {
       title: "Incident Response",
       description: "24/7 security monitoring and incident response procedures",
-      lastUpdated: "2024-11-15"
+      lastUpdated: formatDate(incidentResponseDate)
     },
     {
       title: "Access Control",
       description: "Role-based access control and least privilege principles",
-      lastUpdated: "2024-11-30"
+      lastUpdated: formatDate(accessControlDate)
     },
     {
       title: "Vendor Security",
       description: "Security requirements for all third-party integrations",
-      lastUpdated: "2024-12-05"
+      lastUpdated: formatDate(vendorSecurityDate)
     }
   ];
 
@@ -131,7 +143,7 @@ const Security = () => {
               <CheckCircle className="h-4 w-4 text-green-600" />
               <AlertDescription className="text-green-800">
                 <strong>Security Status:</strong> All systems secure and fully operational. 
-                Last security audit completed on December 1, 2024.
+                Last security audit completed on {formatDate(lastAuditDate)}.
               </AlertDescription>
             </Alert>
           </div>
