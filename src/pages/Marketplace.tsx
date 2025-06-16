@@ -23,21 +23,23 @@ const Marketplace = () => {
         </div>
       </section>
 
+      {/* Search Filters */}
+      <section className="py-6">
+        <div className="container mx-auto px-4">
+          <SearchFilters />
+        </div>
+      </section>
+
       {/* Main Content */}
       <div className="container mx-auto px-4 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Left Sidebar - Filters */}
-          <div className="lg:col-span-1">
-            <SearchFilters />
-          </div>
-          
-          {/* Main Content Area */}
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
+          {/* Main Content Area - GPU Listings */}
+          <div className="xl:col-span-3">
             <GPUListings />
           </div>
           
           {/* Right Sidebar - Trading */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="xl:col-span-1 space-y-6">
             <QuickTrade />
             <OrderBook />
           </div>
