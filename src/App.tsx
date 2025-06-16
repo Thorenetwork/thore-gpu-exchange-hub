@@ -24,6 +24,7 @@ import Status from "./pages/Status";
 import Buyers from "./pages/Buyers";
 import Sellers from "./pages/Sellers";
 import Security from "./pages/Security";
+import Support from "./pages/Support";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ const App = () => (
           <Route path="/buyers" element={<Buyers />} />
           <Route path="/sellers" element={<Sellers />} />
           <Route path="/security" element={<Security />} />
+          <Route path="/support" element={<Support />} />
           <Route path="/thorecoin-transactions" element={<ThorecoinTransactions />} />
           {navItems.map(({ to, page }) => (
             <Route key={to} path={to} element={page} />
