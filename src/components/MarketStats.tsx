@@ -1,18 +1,30 @@
-
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Activity, TrendingUp, Zap, Users } from "lucide-react";
 
 const MarketStats = () => {
+  const [activeTraders, setActiveTraders] = useState(2847);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Generate random number between 1800-1999 to keep under 2000
+      const newCount = Math.floor(Math.random() * 200) + 1800;
+      setActiveTraders(newCount);
+    }, 10000); // Change every 10 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const stats = [
     {
       icon: Activity,
-      value: "2,847",
+      value: activeTraders.toLocaleString(),
       label: "Active Traders",
       color: "text-primary"
     },
     {
       icon: TrendingUp,
-      value: "$1.2M",
+      value: `$${(Math.random() * (12000 - 6700) + 6700).toFixed(0)}`,
       label: "24h Volume",
       color: "text-green-500"
     },
@@ -24,7 +36,7 @@ const MarketStats = () => {
     },
     {
       icon: Users,
-      value: "892",
+      value: "12",
       label: "Verified Providers",
       color: "text-blue-500"
     }
