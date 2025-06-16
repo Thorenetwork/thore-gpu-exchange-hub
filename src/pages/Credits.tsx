@@ -2,11 +2,15 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PurchasedCredits from "@/components/PurchasedCredits";
+import GpuPriceTicker from "@/components/GpuPriceTicker";
 
 const Credits = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      
+      {/* Price Ticker */}
+      <GpuPriceTicker />
       
       {/* Header Section */}
       <section className="bg-gradient-to-r from-primary/10 via-purple-50 to-blue-50 py-12">

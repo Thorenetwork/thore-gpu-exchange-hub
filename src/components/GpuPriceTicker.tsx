@@ -16,15 +16,22 @@ const GpuPriceTicker = () => {
     { name: "Thorecoin", price: 1.25, change: 0, isPositive: true, symbol: "THORE" },
     { name: "NVIDIA A100", price: 2.50, change: 0, isPositive: true },
     { name: "NVIDIA H100", price: 3.75, change: 0, isPositive: true },
+    { name: "NVIDIA H200", price: 4.50, change: 0, isPositive: true },
     { name: "NVIDIA V100", price: 1.85, change: 0, isPositive: false },
     { name: "AMD MI250X", price: 2.10, change: 0, isPositive: true },
+    { name: "Thor T78", price: 4.25, change: 0, isPositive: true },
+    { name: "Intel Ponte Vecchio", price: 2.85, change: 0, isPositive: true },
   ]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setPrices(prev => prev.map(gpu => {
-        const changePercent = (Math.random() - 0.5) * 10; // Random change between -5% and +5%
+        // Generate random change between -5% and +20%
+        const minChange = -5;
+        const maxChange = 20;
+        const changePercent = Math.random() * (maxChange - minChange) + minChange;
         const newPrice = Math.max(0.1, gpu.price * (1 + changePercent / 100));
+        
         return {
           ...gpu,
           price: Number(newPrice.toFixed(2)),
