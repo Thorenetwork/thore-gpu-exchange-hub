@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -124,11 +123,7 @@ const WalletDashboard = () => {
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-sm text-muted-foreground">Network</span>
-              <Badge variant="outline">Polygon</Badge>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-sm text-muted-foreground">Token Standard</span>
-              <Badge variant="outline">ERC-1155</Badge>
+              <Badge variant="outline">Thore Network</Badge>
             </div>
             <div className="flex justify-between">
               <span className="text-sm text-muted-foreground">Status</span>
