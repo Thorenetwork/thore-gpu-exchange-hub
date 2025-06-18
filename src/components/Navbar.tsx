@@ -28,6 +28,9 @@ const Navbar = () => {
             <Link to="/trading" className="text-foreground hover:text-primary transition-colors font-medium">
               Trading
             </Link>
+            <Link to="/wallet" className="text-foreground hover:text-primary transition-colors font-medium">
+              Wallet
+            </Link>
             <Link to="/thorecoin" className="text-foreground hover:text-primary transition-colors font-medium">
               Thorecoin
             </Link>
@@ -82,6 +85,9 @@ const Navbar = () => {
               </Link>
               <Link to="/trading" className="text-foreground hover:text-primary transition-colors font-medium">
                 Trading
+              </Link>
+              <Link to="/wallet" className="text-foreground hover:text-primary transition-colors font-medium">
+                Wallet
               </Link>
               <Link to="/thorecoin" className="text-foreground hover:text-primary transition-colors font-medium">
                 Thorecoin
