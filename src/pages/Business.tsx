@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -36,6 +35,7 @@ import {
   BarChart,
   Bar
 } from "recharts";
+import EarningsCalculator from "@/components/EarningsCalculator";
 
 const Business = () => {
   // Investment growth data
@@ -147,6 +147,19 @@ const Business = () => {
               </CardHeader>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Earnings Calculator Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Calculate Your Earnings</h2>
+            <p className="text-xl text-muted-foreground">
+              Estimate your profits when you rent your server out, or the cost to rent a server to complete your own tasks
+            </p>
+          </div>
+          <EarningsCalculator />
         </div>
       </section>
 
