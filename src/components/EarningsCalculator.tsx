@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Calculator, DollarSign, TrendingUp, Clock, Zap, Info } from "lucide-react";
+import { Calculator, DollarSign, TrendingUp, Clock, Zap, Info, Percent } from "lucide-react";
 
 interface GPUPricing {
   hourlyRentOut: number;
@@ -152,6 +151,11 @@ const EarningsCalculator = () => {
     return Math.round(savings);
   };
 
+  const getSavingsAmount = () => {
+    const pricing = gpuPricing[selectedGPU];
+    return pricing.hourlyRentOut - pricing.hourlyRentIn;
+  };
+
   return (
     <Card className="w-full max-w-6xl mx-auto">
       <CardHeader className="text-center">
@@ -186,15 +190,20 @@ const EarningsCalculator = () => {
           </TabsContent>
 
           <TabsContent value="rent-in" className="mt-6">
-            <div className="text-center mb-4 space-y-2">
+            <div className="text-center mb-4 space-y-3">
               <Badge className="bg-blue-100 text-blue-700 border-blue-300">
                 Calculate Your Costs for Renting GPUs
               </Badge>
-              <div className="flex items-center justify-center gap-2">
-                <Info className="h-4 w-4 text-green-600" />
-                <span className="text-sm text-green-600 font-medium">
-                  Save {getSavingsPercentage()}% compared to market rates
-                </span>
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4">
+                <div className="flex items-center justify-center gap-3 mb-2">
+                  <Percent className="h-6 w-6 text-green-600" />
+                  <span className="text-2xl font-bold text-green-700">
+                    {getSavingsPercentage()}% SAVINGS
+                  </span>
+                </div>
+                <div className="text-sm text-green-600">
+                  Save ${getSavingsAmount().toFixed(2)}/hour compared to market rates
+                </div>
               </div>
             </div>
           </TabsContent>
@@ -271,6 +280,15 @@ const EarningsCalculator = () => {
                 {calculatorType === 'rent-out' ? 'Your Potential Earnings' : 'Your Rental Costs'}
               </h3>
               <p className="text-muted-foreground">Based on {gpuNames[selectedGPU]}</p>
+              
+              {calculatorType === 'rent-in' && (
+                <div className="mt-3">
+                  <div className="inline-flex items-center bg-green-100 text-green-800 px-4 py-2 rounded-full border border-green-300">
+                    <Percent className="h-4 w-4 mr-2" />
+                    <span className="font-bold text-lg">{getSavingsPercentage()}% OFF Market Price</span>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -337,7 +355,17 @@ const EarningsCalculator = () => {
                   <li>• Uptime efficiency: {uptimePercentage}%</li>
                 )}
                 {calculatorType === 'rent-in' && (
-                  <li>• Market rate: ${gpuPricing[selectedGPU].hourlyRentOut.toFixed(2)}/hour (Save {getSavingsPercentage()}%)</li>
+                  <>
+                    <li className="text-green-600 font-medium">
+                      • Market rate: ${gpuPricing[selectedGPU].hourlyRentOut.toFixed(2)}/hour
+                    </li>
+                    <li className="text-green-600 font-medium">
+                      • You pay: ${gpuPricing[selectedGPU].hourlyRentIn.toFixed(2)}/hour
+                    </li>
+                    <li className="text-green-600 font-bold">
+                      • Total savings: {getSavingsPercentage()}% (${getSavingsAmount().toFixed(2)}/hour)
+                    </li>
+                  </>
                 )}
                 <li>• GPU Model: {gpuNames[selectedGPU]}</li>
               </ul>
@@ -372,19 +400,30 @@ const EarningsCalculator = () => {
 
             <Card className="border-green-200 bg-green-50">
               <CardContent className="pt-4">
-                <h4 className="font-semibold text-green-800 mb-2">Pricing Advantage</h4>
-                <div className="space-y-2 text-sm text-green-700">
-                  <div className="flex justify-between">
+                <div className="flex items-center justify-center mb-3">
+                  <Percent className="h-6 w-6 text-green-700 mr-2" />
+                  <h4 className="font-bold text-green-800 text-lg">Massive Savings</h4>
+                </div>
+                <div className="space-y-3 text-sm text-green-700">
+                  <div className="flex justify-between items-center p-2 bg-white/50 rounded">
                     <span>Market Rate:</span>
-                    <span className="font-bold">${gpuPricing[selectedGPU].hourlyRentOut.toFixed(2)}/hr</span>
+                    <span className="font-bold text-red-600 line-through">
+                      ${gpuPricing[selectedGPU].hourlyRentOut.toFixed(2)}/hr
+                    </span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-center p-2 bg-white/50 rounded">
                     <span>Thore Network:</span>
-                    <span className="font-bold">${gpuPricing[selectedGPU].hourlyRentIn.toFixed(2)}/hr</span>
+                    <span className="font-bold text-green-600">
+                      ${gpuPricing[selectedGPU].hourlyRentIn.toFixed(2)}/hr
+                    </span>
                   </div>
-                  <div className="border-t pt-2 flex justify-between font-bold">
-                    <span>You Save:</span>
-                    <span>{getSavingsPercentage()}%</span>
+                  <div className="border-t pt-3 text-center">
+                    <div className="text-2xl font-bold text-green-800">
+                      {getSavingsPercentage()}% SAVINGS
+                    </div>
+                    <div className="text-lg font-semibold">
+                      Save ${getSavingsAmount().toFixed(2)} per hour
+                    </div>
                   </div>
                 </div>
               </CardContent>
