@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -76,7 +75,7 @@ const DataCentre = () => {
       timeline: "Q2 2025 - Q4 2025",
       status: "Upcoming",
       description: "Land acquisition, permits, and foundation construction",
-      budget: "$25M"
+      budget: "$1M"
     },
     {
       phase: "Phase 2",
@@ -84,7 +83,7 @@ const DataCentre = () => {
       timeline: "Q1 2026 - Q3 2026",
       status: "Planned",
       description: "Power systems, cooling infrastructure, and security systems",
-      budget: "$75M"
+      budget: "$3M"
     },
     {
       phase: "Phase 3",
@@ -92,7 +91,7 @@ const DataCentre = () => {
       timeline: "Q4 2026 - Q2 2027",
       status: "Planned",
       description: "GPU deployment, network setup, and testing",
-      budget: "$150M"
+      budget: "$5.5M"
     },
     {
       phase: "Phase 4",
@@ -100,7 +99,7 @@ const DataCentre = () => {
       timeline: "Q3 2027",
       status: "Planned",
       description: "Full operational capacity and client onboarding",
-      budget: "$10M"
+      budget: "$0.5M"
     }
   ];
 
@@ -139,7 +138,7 @@ const DataCentre = () => {
 
   const investmentHighlights = [
     {
-      metric: "$260M",
+      metric: "$10M",
       label: "Total Investment",
       description: "Comprehensive funding for complete facility"
     },
@@ -149,7 +148,7 @@ const DataCentre = () => {
       description: "Annual return on investment projection"
     },
     {
-      metric: "500+",
+      metric: "150+",
       label: "Jobs Created",
       description: "Direct and indirect employment opportunities"
     },
