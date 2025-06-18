@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,7 +21,12 @@ const WalletDashboard = () => {
   const stakedPercent = 30;
   const availablePercent = 25;
   const creditValueUSD = 8750; // $2.50 per credit
-  const creditValueTHR = 2800; // 0.80 THR per credit
+  
+  // THR calculations based on current price and discount
+  const thrPrice = 122; // Current THR price in USD
+  const thrDiscount = 0.8; // 80% discount for AI Credits
+  const effectiveThrPrice = thrPrice * thrDiscount; // $97.6 per THR after discount
+  const creditValueTHR = Math.round((creditValueUSD / effectiveThrPrice) * 100) / 100; // Credits value in THR
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
@@ -61,9 +67,9 @@ const WalletDashboard = () => {
                 className="h-6 w-6 mx-auto mb-2"
               />
               <div className="text-xl font-bold text-blue-600">
-                {creditValueTHR.toLocaleString()} THR
+                {creditValueTHR} THR
               </div>
-              <div className="text-sm text-muted-foreground">THR Value</div>
+              <div className="text-sm text-muted-foreground">THR Value (80% discount)</div>
             </div>
           </div>
 
