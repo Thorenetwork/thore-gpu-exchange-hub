@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -111,7 +110,7 @@ const WalletManagement = () => {
                 </div>
                 <div className="flex justify-between text-sm mb-2">
                   <span>Network:</span>
-                  <Badge variant="outline">Polygon</Badge>
+                  <Badge variant="outline">Thore Network</Badge>
                 </div>
                 <div className="flex justify-between font-medium">
                   <span>Total:</span>
