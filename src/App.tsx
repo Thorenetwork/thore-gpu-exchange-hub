@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -26,6 +25,7 @@ import Sellers from "./pages/Sellers";
 import Security from "./pages/Security";
 import Support from "./pages/Support";
 import DataCentre from "./pages/DataCentre";
+import Wallet from "./pages/Wallet";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +38,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/trading" element={<Trading />} />
+          <Route path="/wallet" element={<Wallet />} />
           <Route path="/thorecoin" element={<Thorecoin />} />
           <Route path="/business" element={<Business />} />
           <Route path="/about" element={<About />} />
