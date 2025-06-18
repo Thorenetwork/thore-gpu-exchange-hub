@@ -7,10 +7,11 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Calculator, DollarSign, TrendingUp, Clock, Zap } from "lucide-react";
+import { Calculator, DollarSign, TrendingUp, Clock, Zap, Info } from "lucide-react";
 
 interface GPUPricing {
-  hourly: number;
+  hourlyRentOut: number;
+  hourlyRentIn: number;
   daily: number;
   monthly: number;
 }
@@ -32,15 +33,56 @@ const EarningsCalculator = () => {
     yearly: 0
   });
 
+  // Updated pricing with rent-in being 40-60% lower than rent-out
   const gpuPricing: GPUData = {
-    'rtx-4090': { hourly: 2.50, daily: 60, monthly: 1800 },
-    'rtx-4080': { hourly: 1.80, daily: 43.2, monthly: 1296 },
-    'rtx-3090': { hourly: 1.20, daily: 28.8, monthly: 864 },
-    'rtx-3080': { hourly: 0.90, daily: 21.6, monthly: 648 },
-    'a100-80gb': { hourly: 4.20, daily: 100.8, monthly: 3024 },
-    'h100': { hourly: 8.50, daily: 204, monthly: 6120 },
-    'v100': { hourly: 1.50, daily: 36, monthly: 1080 },
-    'tesla-t4': { hourly: 0.40, daily: 9.6, monthly: 288 }
+    'rtx-4090': { 
+      hourlyRentOut: 2.50, 
+      hourlyRentIn: 1.25, // 50% lower
+      daily: 60, 
+      monthly: 1800 
+    },
+    'rtx-4080': { 
+      hourlyRentOut: 1.80, 
+      hourlyRentIn: 1.08, // 40% lower
+      daily: 43.2, 
+      monthly: 1296 
+    },
+    'rtx-3090': { 
+      hourlyRentOut: 1.20, 
+      hourlyRentIn: 0.72, // 40% lower
+      daily: 28.8, 
+      monthly: 864 
+    },
+    'rtx-3080': { 
+      hourlyRentOut: 0.90, 
+      hourlyRentIn: 0.54, // 40% lower
+      daily: 21.6, 
+      monthly: 648 
+    },
+    'a100-80gb': { 
+      hourlyRentOut: 4.20, 
+      hourlyRentIn: 2.52, // 40% lower
+      daily: 100.8, 
+      monthly: 3024 
+    },
+    'h100': { 
+      hourlyRentOut: 8.50, 
+      hourlyRentIn: 4.25, // 50% lower
+      daily: 204, 
+      monthly: 6120 
+    },
+    'v100': { 
+      hourlyRentOut: 1.50, 
+      hourlyRentIn: 0.75, // 50% lower
+      daily: 36, 
+      monthly: 1080 
+    },
+    'tesla-t4': { 
+      hourlyRentOut: 0.40, 
+      hourlyRentIn: 0.24, // 40% lower
+      daily: 9.6, 
+      monthly: 288 
+    }
   };
 
   const gpuNames: { [key: string]: string } = {
@@ -52,6 +94,17 @@ const EarningsCalculator = () => {
     'h100': 'NVIDIA H100',
     'v100': 'NVIDIA V100',
     'tesla-t4': 'NVIDIA Tesla T4'
+  };
+
+  const gpuSpecs: { [key: string]: { memory: string; performance: string; use: string } } = {
+    'rtx-4090': { memory: '24GB GDDR6X', performance: '83 TFLOPS', use: 'AI Training, Gaming' },
+    'rtx-4080': { memory: '16GB GDDR6X', performance: '55 TFLOPS', use: 'AI Development, Rendering' },
+    'rtx-3090': { memory: '24GB GDDR6X', performance: '36 TFLOPS', use: 'ML Research, Content Creation' },
+    'rtx-3080': { memory: '10GB GDDR6X', performance: '30 TFLOPS', use: 'Gaming, Light AI Tasks' },
+    'a100-80gb': { memory: '80GB HBM2e', performance: '312 TFLOPS', use: 'Enterprise AI, HPC' },
+    'h100': { memory: '80GB HBM3', performance: '756 TFLOPS', use: 'Large Language Models' },
+    'v100': { memory: '32GB HBM2', performance: '125 TFLOPS', use: 'Scientific Computing' },
+    'tesla-t4': { memory: '16GB GDDR6', performance: '65 TFLOPS', use: 'Inference, Edge AI' }
   };
 
   useEffect(() => {
@@ -66,7 +119,7 @@ const EarningsCalculator = () => {
 
     if (calculatorType === 'rent-out') {
       // Calculate earnings from renting out
-      const hourlyEarnings = pricing.hourly * uptime;
+      const hourlyEarnings = pricing.hourlyRentOut * uptime;
       const dailyEarnings = hourlyEarnings * hoursPerDay;
       const monthlyEarnings = dailyEarnings * daysPerMonth;
       const yearlyEarnings = monthlyEarnings * 12;
@@ -79,7 +132,7 @@ const EarningsCalculator = () => {
       });
     } else {
       // Calculate costs for renting
-      const hourlyCost = pricing.hourly;
+      const hourlyCost = pricing.hourlyRentIn;
       const dailyCost = hourlyCost * hoursPerDay;
       const monthlyCost = dailyCost * daysPerMonth;
       const yearlyCost = monthlyCost * 12;
@@ -93,8 +146,14 @@ const EarningsCalculator = () => {
     }
   };
 
+  const getSavingsPercentage = () => {
+    const pricing = gpuPricing[selectedGPU];
+    const savings = ((pricing.hourlyRentOut - pricing.hourlyRentIn) / pricing.hourlyRentOut) * 100;
+    return Math.round(savings);
+  };
+
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="w-full max-w-6xl mx-auto">
       <CardHeader className="text-center">
         <div className="flex items-center justify-center mb-4">
           <Calculator className="h-8 w-8 text-primary mr-3" />
@@ -127,15 +186,21 @@ const EarningsCalculator = () => {
           </TabsContent>
 
           <TabsContent value="rent-in" className="mt-6">
-            <div className="text-center mb-4">
+            <div className="text-center mb-4 space-y-2">
               <Badge className="bg-blue-100 text-blue-700 border-blue-300">
                 Calculate Your Costs for Renting GPUs
               </Badge>
+              <div className="flex items-center justify-center gap-2">
+                <Info className="h-4 w-4 text-green-600" />
+                <span className="text-sm text-green-600 font-medium">
+                  Save {getSavingsPercentage()}% compared to market rates
+                </span>
+              </div>
             </div>
           </TabsContent>
         </Tabs>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Input Section */}
           <div className="space-y-6">
             <div>
@@ -261,13 +326,75 @@ const EarningsCalculator = () => {
             <div className="mt-6 p-4 bg-muted/50 rounded-lg">
               <h4 className="font-semibold mb-2">Calculation Details:</h4>
               <ul className="text-sm text-muted-foreground space-y-1">
-                <li>• Base rate: ${gpuPricing[selectedGPU].hourly}/hour</li>
+                <li>
+                  • {calculatorType === 'rent-out' ? 'Earning' : 'Cost'} rate: $
+                  {calculatorType === 'rent-out' 
+                    ? gpuPricing[selectedGPU].hourlyRentOut.toFixed(2) 
+                    : gpuPricing[selectedGPU].hourlyRentIn.toFixed(2)}/hour
+                </li>
                 <li>• Usage: {hours} hours/day × {days} days/month</li>
                 {calculatorType === 'rent-out' && (
                   <li>• Uptime efficiency: {uptimePercentage}%</li>
                 )}
+                {calculatorType === 'rent-in' && (
+                  <li>• Market rate: ${gpuPricing[selectedGPU].hourlyRentOut.toFixed(2)}/hour (Save {getSavingsPercentage()}%)</li>
+                )}
                 <li>• GPU Model: {gpuNames[selectedGPU]}</li>
               </ul>
+            </div>
+          </div>
+
+          {/* GPU Specifications */}
+          <div className="space-y-4">
+            <div className="text-center mb-4">
+              <h3 className="text-xl font-bold">GPU Specifications</h3>
+              <p className="text-muted-foreground">{gpuNames[selectedGPU]}</p>
+            </div>
+
+            <Card>
+              <CardContent className="pt-4">
+                <div className="space-y-3">
+                  <div>
+                    <div className="text-sm font-semibold text-muted-foreground">Memory</div>
+                    <div className="text-lg font-bold">{gpuSpecs[selectedGPU].memory}</div>
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-muted-foreground">Performance</div>
+                    <div className="text-lg font-bold">{gpuSpecs[selectedGPU].performance}</div>
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-muted-foreground">Best For</div>
+                    <div className="text-lg font-bold">{gpuSpecs[selectedGPU].use}</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-green-200 bg-green-50">
+              <CardContent className="pt-4">
+                <h4 className="font-semibold text-green-800 mb-2">Pricing Advantage</h4>
+                <div className="space-y-2 text-sm text-green-700">
+                  <div className="flex justify-between">
+                    <span>Market Rate:</span>
+                    <span className="font-bold">${gpuPricing[selectedGPU].hourlyRentOut.toFixed(2)}/hr</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Thore Network:</span>
+                    <span className="font-bold">${gpuPricing[selectedGPU].hourlyRentIn.toFixed(2)}/hr</span>
+                  </div>
+                  <div className="border-t pt-2 flex justify-between font-bold">
+                    <span>You Save:</span>
+                    <span>{getSavingsPercentage()}%</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="text-xs text-muted-foreground space-y-1">
+              <p>• Prices are competitive market rates</p>
+              <p>• Rent-in rates 40-60% below market</p>
+              <p>• No hidden fees or setup costs</p>
+              <p>• Instant deployment available</p>
             </div>
           </div>
         </div>
