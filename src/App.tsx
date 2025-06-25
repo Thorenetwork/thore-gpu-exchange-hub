@@ -1,8 +1,10 @@
+
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navItems } from "./nav-items";
+import PurchaseTicker from "./components/PurchaseTicker";
 import Index from "./pages/Index";
 import ThorecoinTransactions from "./pages/ThorecoinTransactions";
 import Marketplace from "./pages/Marketplace";
@@ -62,6 +64,7 @@ const App = () => (
             <Route key={to} path={to} element={page} />
           ))}
         </Routes>
+        <PurchaseTicker />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
