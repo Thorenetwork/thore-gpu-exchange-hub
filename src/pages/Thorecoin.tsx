@@ -84,7 +84,7 @@ const Thorecoin = () => {
                   <Percent className="h-6 w-6 text-green-500" />
                 </div>
                 <CardTitle>Instant Discounts</CardTitle>
-                <CardDescription className="space-y-2">
+                <div className="space-y-2">
                   <div className="flex items-center gap-2">
                     <Badge variant="secondary">5%</Badge>
                     <span className="text-sm">Under ₹50,000</span>
@@ -93,8 +93,8 @@ const Thorecoin = () => {
                     <Badge variant="default">10%</Badge>
                     <span className="text-sm">Above ₹50,000</span>
                   </div>
-                  Exclusive discounts for THR payments
-                </CardDescription>
+                  <p className="text-sm text-muted-foreground">Exclusive discounts for THR payments</p>
+                </div>
               </CardHeader>
             </Card>
 

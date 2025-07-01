@@ -9,7 +9,7 @@ const ThorecoinPriceTicker = () => {
   const [isPositive, setIsPositive] = useState(true);
   const [high, setHigh] = useState(157);
   const [low, setLow] = useState(109);
-  const [volume, setVolume] = useState(2.4);
+  const [volume, setVolume] = useState(48);
   const marketCap = 12; // Fixed at $12 million USD
 
   useEffect(() => {
@@ -22,8 +22,8 @@ const ThorecoinPriceTicker = () => {
       const newHigh = Math.max(high, newPrice);
       const newLow = Math.min(low, newPrice);
       
-      // Generate random volume between 1.5M and 4.5M
-      const newVolume = Math.random() * 3 + 1.5;
+      // Generate random volume between $35,000 and $61,000
+      const newVolume = Math.random() * 26 + 35;
       
       setPrice(Number(newPrice.toFixed(2)));
       setChange(Number(changePercent.toFixed(2)));
@@ -86,7 +86,7 @@ const ThorecoinPriceTicker = () => {
             <div className="text-center">
               <div className="text-sm text-muted-foreground">24h Volume</div>
               <Badge variant="outline" className="text-blue-600 border-blue-600">
-                ${volume}M
+                ${volume}K
               </Badge>
             </div>
             <div className="text-center">
