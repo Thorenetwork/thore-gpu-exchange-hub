@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, TrendingDown } from "lucide-react";
@@ -8,6 +9,8 @@ const ThorecoinPriceTicker = () => {
   const [isPositive, setIsPositive] = useState(true);
   const [high, setHigh] = useState(157);
   const [low, setLow] = useState(109);
+  const [volume, setVolume] = useState(2.4);
+  const marketCap = 12; // Fixed at $12 million USD
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,11 +22,15 @@ const ThorecoinPriceTicker = () => {
       const newHigh = Math.max(high, newPrice);
       const newLow = Math.min(low, newPrice);
       
+      // Generate random volume between 1.5M and 4.5M
+      const newVolume = Math.random() * 3 + 1.5;
+      
       setPrice(Number(newPrice.toFixed(2)));
       setChange(Number(changePercent.toFixed(2)));
       setIsPositive(changePercent >= 0);
       setHigh(Number(newHigh.toFixed(2)));
       setLow(Number(newLow.toFixed(2)));
+      setVolume(Number(newVolume.toFixed(1)));
     }, 2000);
 
     return () => clearInterval(interval);
@@ -70,6 +77,22 @@ const ThorecoinPriceTicker = () => {
               <div className="text-sm text-muted-foreground">24h Low</div>
               <Badge variant="outline" className="text-red-600 border-red-600">
                 ${low}
+              </Badge>
+            </div>
+          </div>
+
+          {/* Volume and Market Cap */}
+          <div className="flex items-center gap-6">
+            <div className="text-center">
+              <div className="text-sm text-muted-foreground">24h Volume</div>
+              <Badge variant="outline" className="text-blue-600 border-blue-600">
+                ${volume}M
+              </Badge>
+            </div>
+            <div className="text-center">
+              <div className="text-sm text-muted-foreground">Market Cap</div>
+              <Badge variant="outline" className="text-purple-600 border-purple-600">
+                ${marketCap}M USD
               </Badge>
             </div>
           </div>
