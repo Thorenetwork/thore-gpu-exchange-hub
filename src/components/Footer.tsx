@@ -1,11 +1,49 @@
 
 import { Link } from "react-router-dom";
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const Footer = () => {
+  const [waitlistCount, setWaitlistCount] = useState(460);
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWaitlistCount(Math.floor(Math.random() * (700 - 460 + 1)) + 460);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleWaitlistSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle waitlist submission here
+    console.log("Waitlist email:", email);
+    setEmail("");
+  };
+
   return (
     <footer className="bg-muted/50 border-t border-border">
       <div className="container mx-auto px-4 py-12">
+        {/* Waitlist Section */}
+        <div className="mb-12 text-center">
+          <h2 className="text-2xl font-bold mb-4">Join the Waitlist</h2>
+          <p className="text-muted-foreground mb-2">Be the first to access our GPU marketplace</p>
+          <p className="text-sm text-primary font-medium mb-6">{waitlistCount} people already waiting</p>
+          <form onSubmit={handleWaitlistSubmit} className="flex gap-2 max-w-md mx-auto">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="flex-1"
+            />
+            <Button type="submit">Join Waitlist</Button>
+          </form>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
