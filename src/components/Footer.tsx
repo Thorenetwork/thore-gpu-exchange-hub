@@ -18,8 +18,10 @@ const Footer = () => {
 
   const handleWaitlistSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle waitlist submission here
-    console.log("Waitlist email:", email);
+    // Open mailto link to send email to info@thorenetwork.com
+    const subject = encodeURIComponent("Waitlist Registration");
+    const body = encodeURIComponent(`Email: ${email}\n\nI would like to join the Thore Network GPU marketplace waitlist.`);
+    window.open(`mailto:info@thorenetwork.com?subject=${subject}&body=${body}`);
     setEmail("");
   };
 
