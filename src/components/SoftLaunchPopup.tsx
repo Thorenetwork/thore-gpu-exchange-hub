@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { Calendar, Rocket, X } from "lucide-react";
 
 const SoftLaunchPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     // Show popup after a short delay when component mounts
@@ -18,6 +20,16 @@ const SoftLaunchPopup = () => {
   }, []);
 
   const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Open mailto link to send email to info@thorenetwork.com
+    const subject = encodeURIComponent("AI Credit Marketplace Registration");
+    const body = encodeURIComponent(`Email: ${email}\n\nI would like to join the Thore Network AI Credit Marketplace and receive updates.`);
+    window.open(`mailto:info@thorenetwork.com?subject=${subject}&body=${body}`);
+    setEmail("");
     setIsOpen(false);
   };
 
@@ -67,11 +79,11 @@ const SoftLaunchPopup = () => {
             </p>
             
             <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-              <div className="text-3xl font-bold mb-1">
-                30-07-2025
+              <div className="text-3xl font-bold mb-1 text-green-400">
+                LIVE NOW
               </div>
               <div className="text-sm opacity-80">
-                Mark your calendar!
+                Join the marketplace!
               </div>
             </div>
             
@@ -80,7 +92,23 @@ const SoftLaunchPopup = () => {
               Be part of the future of AI resource sharing and trading.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-3 mt-6">
+            <form onSubmit={handleEmailSubmit} className="space-y-4 mt-6">
+              <div className="flex gap-2">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-1 bg-white/20 border-white/30 text-white placeholder:text-white/60"
+                />
+                <Button type="submit" variant="secondary">
+                  Join Now
+                </Button>
+              </div>
+            </form>
+            
+            <div className="flex flex-col sm:flex-row gap-3 mt-4">
               <Button 
                 variant="secondary" 
                 className="flex-1"
